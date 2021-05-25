@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>工程一覧</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md">
+				<h1 class="card text-center" style="margin:50px">工程一覧</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 offset-md-1">
+				<form th:action="@{/createkotei}" method="get" >
+					<input type="submit" class="btn btn-outline-primary" value="登録"/>
+				</form>
+			</div>
+			<div class="col-md-2 offset-md-6 d-md-flex justify-content-md-end">
+				<input type="button" onclick="location.href='/kintai'" class="btn btn-outline-primary float-right" value="メニュー"/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 offset-md-1">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">工程コード</th>
+							<th scope="col">工程名称</th>
+							<th scope="col">工程定義</th>
+							<th scope="col"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>0010</td>
+							<td>要件定義</td>
+							<td></td>
+							<td class="d-md-flex justify-content-md-end">
+								<form th:action="@{/kintai/kotei/updateordelete}" method="post">
+									<input type="hidden" name="id" />
+									<input type="submit" class="btn btn-info" name="command" value="変更" />
+									<input type="submit" class="btn btn-danger" name="command" value="削除" />
+								</form>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<p>
+			Member List
+			<form th:action="@{/createmember}" method="get">
+				<input type="submit" name="command" value="Create" />
+			</form>
+		</p>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">#</th>
+					<th scope="col">Name</th>
+					<th scope="col">Condition</th>
+					<th scope="col">Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="entry : ${memberList}">
+					<td>[[${entry.id}]]</td>
+					<td>[[${entry.name}]]</td>
+					<td>[[${entry.condition}]]</td>
+					<td>
+						<form th:action="@{/updatemember}" method="post" th:object="${helloForm}">
+							<input type="hidden" name="id" th:value="${entry.id}" />
+							<input type="submit" name="command" value="Modify" />
+							<input type="submit" name="command" value="Delete" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div><a href="/kintai">勤怠管理システム</a></div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+</body>
+</html>

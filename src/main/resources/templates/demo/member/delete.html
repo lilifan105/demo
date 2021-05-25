@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<p>
+		<ul>
+			<li><a href="/showmembers">一覧に戻る</a></li>
+		</ul>
+		</p>
+		<form th:action="@{/deleteconfirmed}" method="post">
+			<input type="hidden" name="id" th:value="${member.getId()}" /> 
+			<div class="input-group mb-3">
+				<label for="InputId" class="input-group-text">Id</label>
+				<input readonly
+					type="text" class="form-control" id="InputId"
+					th:value="${member.getId()}" />
+			</div>
+			<div class="input-group mb-3">
+				<label for="InputName" class="input-group-text">Name</label>
+				<input readonly
+					type="text" class="form-control" id="InputName"
+					th:value="${member.getName()}" />
+			</div>
+			<div class="input-group mb-3">
+				<label for="InputCondition" class="input-group-text">Condition</label>
+				<input readonly
+					type="text" class="form-control" id="InputCondition"
+					th:value="${member.getCondition()}" />
+			</div>
+				<input
+					type="submit" name="command" value="Ok" /> <input
+					type="submit" name="command" value="Cancel" />
+		</form>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+</body>
+</html>

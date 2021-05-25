@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<div>
+			<ul>
+				<li><a href="/showmembers">一覧に戻る</a></li>
+			</ul>
+		</div>
+		<form th:action="@{/modifymember}" method="post"
+			th:object="${helloForm}">
+             <div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}">
+	             <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">グローバルエラー表示エリア</p>
+             </div>
+			<div class="input-group mb-3">
+				<label for="InputId" class="input-group-text">Id</label>
+				<input type="text" class="form-control" id="InputId" th:field="*{callerId}" />
+			</div>
+			<div class="input-group mb-3">
+				<label for="InputName" class="input-group-text">Name</label>
+				<input type="text" class="form-control" id="InputName" th:field="*{callerName}" />
+				<span style="color: red;" th:if="${#fields.hasErrors('callerName')}" th:errors="*{callerName}"></span>
+			</div>
+			<div class="input-group mb-3">
+				<label for="InputCondition" class="input-group-text">Condition</label>
+				<input type="text" class="form-control" id="InputCondition" th:field="*{callerCondition}" />
+				<span style="color: red;" th:if="${#fields.hasErrors('callerCondition')}" th:errors="*{callerCondition}"></span>
+			</div>
+			<input type="submit" class="btn btn-primary" value="Submit" />
+		</form>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+		crossorigin="anonymous"></script>
+</body>
+</html>

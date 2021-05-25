@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>工程一覧</title>
+<title>日次作業実績一覧</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
@@ -13,12 +13,12 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md">
-				<h1 class="card text-center" style="margin:50px">工程一覧</h1>
+				<h1 class="card text-center" style="margin:50px">日次作業実績一覧</h1>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-2 offset-md-1">
-				<form th:action="@{/kintai/kotei/create}" method="get" >
+				<form th:action="@{/kintai/nitizisagyozisseki/create}" method="get" >
 					<input type="submit" class="btn btn-outline-primary" value="登録"/>
 				</form>
 			</div>
@@ -31,19 +31,17 @@
 				<table class="table table-striped table-hover" style="margin-top:30px">
 					<thead class="table-dark">
 						<tr>
-							<th scope="col">工程コード</th>
-							<th scope="col">工程名称</th>
-							<th scope="col">工程定義</th>
+							<th scope="col">社員番号ド</th>
+							<th scope="col">作業日</th>
 							<th scope="col"></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="entry : ${koteiList}">
-							<td>[[${entry.koteicode}]]</td>
-							<td>[[${entry.koteimeisyo}]]</td>
-							<td>[[${entry.koteiteigi}]]</td>
+						<tr th:each="entry : ${NitizisagyojissekiList}">
+							<td>[[${entry.syainbango}]]</td>
+							<td>[[${entry.sagyobi}]]</td>
 							<td>
-								<form th:action="@{/kintai/kotei/updateordelete}" method="post" th:object="${koteiForm}">
+								<form th:action="@{/kintai/nitizisagyozisseki/updateordelete}" method="post" th:object="${koteiForm}">
 									<input type="hidden" name="koteicode" th:value="${entry.koteicode}" />
 									<span class="d-md-flex justify-content-md-end gap-2">
 									<input type="submit" class="btn btn-info" name="command" value="変更" />

@@ -11,42 +11,45 @@
 </head>
 <body>
 <div class="container">
-		<div class="row">
-			<div class="col-md">
-				<h1 class="card text-center" style="margin:50px">工程登録</h1>
-			</div>
+	<div class="row">
+		<div class="col-md">
+			<h1 class="card text-center" style="margin:50px">工程登録</h1>
 		</div>
-		<form th:action="@{/createkotei}" method="post" th:object="${koteiForm}">
-		<div class="row">
-			<div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}">
-	             <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">グローバルエラー表示エリア</p>
-             </div>
-		</div>
-		<div class="row">
-			<div class="col-md-2 offset-md-1">
-				<input type="submit" class="btn btn-outline-primary" value="登録"/>
-			</div>
-			<div class="col-md-2 offset-md-6 d-md-flex justify-content-md-end">
-				<input type="button" onclick="location.href='/kintai/kotei/list'" class="btn btn-outline-primary float-right" value="一覧へ"/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-10 offset-md-1" style="margin-top:20px">
-				<div class="input-group mb-3">
-						<span class="input-group-text" id="basic-addon1">工程コード</span>
-					<input type="text" class="form-control" placeholder="工程コード" aria-label="工程コード" aria-describedby="basic-addon1">
-				</div>
-				<div class="input-group mb-3">
-						<span class="input-group-text" id="basic-addon1">工程名称</span>
-					<input type="text" class="form-control" placeholder="工程名称" aria-label="工程名称" aria-describedby="basic-addon1">
-				</div>
-				<div class="input-group mb-3">
-						<span class="input-group-text" id="basic-addon1">工程定義</span>
-					<input type="text" class="form-control" placeholder="工程定義" aria-label="工程定義" aria-describedby="basic-addon1">
-				</div>
-			</div>
-		</div>
-		</form>
 	</div>
+	<form th:action="@{/kintai/kotei/create}" method="post" th:object="${koteiForm}">
+	<div class="row">
+		<div class="alert alert-danger" th:if="${#fields.hasGlobalErrors()}">
+             <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">グローバルエラー表示エリア</p>
+            </div>
+	</div>
+	<div class="row">
+		<div class="col-md-2 offset-md-1">
+			<input type="submit" class="btn btn-outline-primary" value="登録"/>
+		</div>
+		<div class="col-md-2 offset-md-6 d-md-flex justify-content-md-end">
+			<input type="button" onclick="location.href='/kintai/kotei/list'" class="btn btn-outline-primary float-right" value="一覧へ"/>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-10 offset-md-1" style="margin-top:20px">
+			<div class="input-group mb-3" style="margin:20px 0px 0px 0px">
+				<label class="input-group-text" for="koteicode">工程コード</label>
+				<input type="text" class="form-control" id="koteicode" th:field="*{callerKoteicode}" placeholder="工程コード" aria-label="工程コード" aria-describedby="basic-addon1">
+			</div>
+			<div class="alert alert-danger" style="margin-top:0px" th:if="${#fields.hasErrors('callerKoteicode')}" th:errors="*{callerKoteicode}"></div>
+			<div class="input-group mb-3" style="margin:20px 0px 0px 0px">
+				<label class="input-group-text" for="koteimeisyo">工程名称</label>
+				<input type="text" class="form-control" id="koteimeisyo" th:field="*{callerKoteimeisyo}" placeholder="工程名称" aria-label="工程コード" aria-describedby="basic-addon2">
+			</div>
+			<div class="alert alert-danger" style="margin-top:0px" th:if="${#fields.hasErrors('callerKoteimeisyo')}" th:errors="*{callerKoteimeisyo}"></div>
+			<div class="input-group mb-3" style="margin:20px 0px 0px 0px">
+				<label class="input-group-text" for="koteiteigi">工程定義</label>
+				<input type="text" class="form-control" id="koteiteigi" th:field="*{callerKoteiteigi}" placeholder="工程定義" aria-label="工程コード" aria-describedby="basic-addon3">
+			</div>
+			<div class="alert alert-danger" style="margin-top:0px" th:if="${#fields.hasErrors('callerKoteiteigi')}" th:errors="*{callerKoteiteigi}"></div>
+		</div>
+	</div>
+	</form>
+</div>
 </body>
 </html>
